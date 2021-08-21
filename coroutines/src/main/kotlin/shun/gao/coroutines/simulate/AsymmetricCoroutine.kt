@@ -84,4 +84,8 @@ class AsymmetricCoroutine<P, R> private constructor(
             else -> {} // do nothing
         }
     }
+
+    suspend fun <SymmetricType> SymmetricCoroutine<SymmetricType>.yield(value: R): P {
+        return body.yield(value)
+    }
 }
