@@ -2,6 +2,7 @@ package shun.gao.coroutines
 
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.Dispatchers
+import shun.gao.coroutines.core.DeferredCoroutine
 import shun.gao.coroutines.core.StandardCoroutine
 import shun.gao.coroutines.scope.CoroutineScope
 import java.util.concurrent.atomic.AtomicInteger
@@ -17,6 +18,15 @@ fun CoroutineScope.launch(
     block: suspend CoroutineScope.() -> Unit
 ) : Job {
     val completion = StandardCoroutine(newCoroutineContext(context))
+    block.startCoroutine(completion, completion)
+    return completion
+}
+
+fun <T> CoroutineScope.async(
+    context: CoroutineContext = EmptyCoroutineContext,
+    block: suspend CoroutineScope.() -> T
+) : Deferred<T> {
+    val completion = DeferredCoroutine<T>(newCoroutineContext(context))
     block.startCoroutine(completion, completion)
     return completion
 }
