@@ -1,7 +1,7 @@
 package shun.gao.coroutines.simulate
 
-import shun.gao.coroutines.common.Dispatcher
-import shun.gao.coroutines.common.DispatcherContext
+import shun.gao.coroutines.dispatcher.Dispatcher
+import shun.gao.coroutines.dispatcher.DispatcherContext
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue

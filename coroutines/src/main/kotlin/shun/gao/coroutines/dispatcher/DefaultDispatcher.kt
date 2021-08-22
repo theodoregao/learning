@@ -1,4 +1,4 @@
-package shun.gao.coroutines.common
+package shun.gao.coroutines.dispatcher
 
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicInteger

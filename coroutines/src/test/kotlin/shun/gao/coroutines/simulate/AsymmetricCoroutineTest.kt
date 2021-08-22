@@ -4,7 +4,7 @@ import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-import shun.gao.coroutines.common.DispatcherContext
+import shun.gao.coroutines.dispatcher.DispatcherContext
 import shun.gao.coroutines.utils.TestLog.println
 
 internal class AsymmetricCoroutineTest {

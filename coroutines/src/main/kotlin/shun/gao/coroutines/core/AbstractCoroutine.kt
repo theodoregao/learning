@@ -27,6 +27,7 @@ abstract class AbstractCoroutine<T>(
 
     init {
         state.set(CoroutineState.InComplete())
+        parentCancelDisposable = parentJob?.invokeOnCancel { cancel() }
     }
 
     override val isActive: Boolean
@@ -60,6 +61,7 @@ abstract class AbstractCoroutine<T>(
                 if (!currentCancellingJobState) {
                     throw CancellationException("Coroutine is cancelled.")
                 }
+                return
             }
         }
     }
@@ -79,7 +81,7 @@ abstract class AbstractCoroutine<T>(
             }
         }
 
-        newState.parse<CoroutineState.Complete<T>>()?.let {
+        (newState as? CoroutineState.Complete<T>)?.let {
             block(when {
                 it.value != null -> Result.success(it.value)
                 it.exception != null -> Result.failure(it.exception)
@@ -132,7 +134,7 @@ abstract class AbstractCoroutine<T>(
             }
         }
 
-        newState.parse<CoroutineState.Cancelling>()?.let { onCancel() }
+        (newState as? CoroutineState.Cancelling)?.let { onCancel() }
         return disposable
     }
 
