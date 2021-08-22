@@ -1,4 +1,4 @@
-package shun.gao.coroutines.javaimpl
+package shun.gao.coroutines
 
 import kotlinx.coroutines.runBlocking
 import kotlin.test.Test

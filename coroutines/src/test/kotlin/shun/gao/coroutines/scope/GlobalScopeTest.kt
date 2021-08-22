@@ -2,7 +2,7 @@ package shun.gao.coroutines.scope
 
 import kotlinx.coroutines.runBlocking
 import shun.gao.coroutines.async
-import shun.gao.coroutines.javaimpl.delay
+import shun.gao.coroutines.delay
 import shun.gao.coroutines.launch
 import shun.gao.coroutines.utils.TestLog.println
 import kotlin.test.Test
